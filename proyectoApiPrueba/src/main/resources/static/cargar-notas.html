@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Modificar Materia</title>
+    <link rel="stylesheet" type="text/css" href="css/formMateria.css">
+    <meta charset="UTF-8">
+
+</head>
+<body>
+<div class="bgded overlay light">
+
+    <h1 id = "titulo">Modificar Materia</h1>
+    <form id="formModificarMateria">
+
+
+        <label for="notaFinal">Nota Final</label><br>
+        <input type="text" id="notaFinal" name="notaFinal"><br><br>
+
+        <label for="notaCursada">Nota Cursada</label><br>
+        <input type="text" id="notaCursada" name="notaCursada"><br><br>
+
+        <label for="promocion">Promoción</label><br>
+        <select id="promocion" name="promocion">
+            <option value="true">Si</option>
+            <option value="false">No</option>
+        </select><br><br>
+
+        <label for="anioCursada">Año Cursada</label><br>
+        <input type="text" id="anioCursada" name="anioCursada"><br><br>
+
+        <input type="submit" value="Guardar" id = "guardar-boton" onclick="modificarNotas()">
+        <input type="submit" value="Volver" id = "volver-boton" onclick="volverTabla(event)">
+
+    </form>
+</div>
+    <script src ="js/cargar-notas.js"></script>
+
+</body>
+</html>

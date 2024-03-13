@@ -1,0 +1,48 @@
+package com.seguimientodematerias.proyectoApiPrueba.Dao;
+
+
+import com.seguimientodematerias.proyectoApiPrueba.models.Materia;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
+@Repository
+@Transactional
+public class MateriaDaoImp implements MateriaDao{
+    @PersistenceContext
+    private EntityManager entityManager;
+
+
+    @Transactional
+    @Override
+    public List getMaterias(String anioMateria) {
+        String query = "FROM Materia WHERE anioMateria = :anioMateria";
+        try {
+            return entityManager.createQuery(query, Materia.class)
+                    .setParameter("anioMateria", anioMateria)
+                    .getResultList();
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Error al crear la query");
+            return null;
+        }
+    }
+
+    @Override
+    public void modificarMateria(Materia materiaMod) {
+        try {
+            Materia materia = entityManager.find(Materia.class, materiaMod.getId());
+            materia.setNotaFinal(materiaMod.getNotaFinal());
+            materia.setPromocion(materiaMod.isPromocion());
+            materia.setNotaCursada(materiaMod.getNotaCursada());
+            materia.setAnioCursada(materiaMod.getAnioCursada());
+            System.out.println("Modifico materia");
+        } catch (Exception e) {
+            System.out.println("Error al modificar la materia");
+            throw e;
+        }
+    }
+}
