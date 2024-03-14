@@ -8,6 +8,6 @@ import java.util.List;
 // Accede a la base de datos
 public interface MateriaDao {
 
-    public List getMaterias(String anioMateria);
+    public List<Materia> getMaterias(String anioMateria);
     public void modificarMateria(Materia materiaMod);
 }

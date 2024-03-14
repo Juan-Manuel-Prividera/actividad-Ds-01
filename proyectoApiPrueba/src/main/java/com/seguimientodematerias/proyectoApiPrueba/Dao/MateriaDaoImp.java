@@ -18,7 +18,7 @@ public class MateriaDaoImp implements MateriaDao{
 
     @Transactional
     @Override
-    public List getMaterias(String anioMateria) {
+    public List<Materia> getMaterias(String anioMateria) {
         String query = "FROM Materia WHERE anioMateria = :anioMateria";
         try {
             return entityManager.createQuery(query, Materia.class)
@@ -39,7 +39,6 @@ public class MateriaDaoImp implements MateriaDao{
             materia.setPromocion(materiaMod.isPromocion());
             materia.setNotaCursada(materiaMod.getNotaCursada());
             materia.setAnioCursada(materiaMod.getAnioCursada());
-            System.out.println("Modifico materia");
         } catch (Exception e) {
             System.out.println("Error al modificar la materia");
             throw e;

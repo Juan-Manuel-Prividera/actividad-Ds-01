@@ -16,7 +16,7 @@ public class MateriaController {
     private MateriaDao materiaDao;
 
     @RequestMapping(value = "materias", method = RequestMethod.GET)
-    public List getMaterias(@RequestParam("anioMateria") String anioMateria){
+    public List<Materia> getMaterias(@RequestParam("anioMateria") String anioMateria){
         try {
             return materiaDao.getMaterias(anioMateria);
         }catch (Exception e){
