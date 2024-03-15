@@ -8,7 +8,6 @@ $(document).ready(function() {
 async function cargarMaterias() {
     let anioMateria = localStorage.getItem('anioActual');
     try {
-        // Crea una solicitud que recibe el controller
         const response = await fetch(`materias?anioMateria=${anioMateria}`, {
             method: 'GET',
             headers: {

@@ -12,6 +12,8 @@ import java.util.List;
 @Repository
 @Transactional
 public class MateriaDaoImp implements MateriaDao{
+   // Se encarga de la conexion con la base de datos
+    // Con EntityManager se realizan las consultas y solititudes a la base de datos
     @PersistenceContext
     private EntityManager entityManager;
 

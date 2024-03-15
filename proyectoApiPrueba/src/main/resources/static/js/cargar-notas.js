@@ -18,7 +18,7 @@ async function modificarNotas(){
     };
 
     const request = await fetch('cargar-notas', {
-        method: 'POST',
+        method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
         },
