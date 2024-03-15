@@ -5,6 +5,7 @@ import com.seguimientodematerias.proyectoApiPrueba.models.Materia;
 import com.seguimientodematerias.proyectoApiPrueba.services.MateriaService;
 import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -25,6 +26,8 @@ public class MateriaServiceTest {
     @Mock
     private MateriaDao materiaDao;
     private Materia materia;
+
+    @BeforeEach
     public void setUp() {
         materia = new Materia();
         materia.setNombre("Hola");

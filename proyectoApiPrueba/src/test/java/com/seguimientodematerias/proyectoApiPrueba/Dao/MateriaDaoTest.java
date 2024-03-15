@@ -2,8 +2,11 @@ package com.seguimientodematerias.proyectoApiPrueba.Dao;
 
 import com.seguimientodematerias.proyectoApiPrueba.models.Materia;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -13,21 +16,21 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 
 @ExtendWith(MockitoExtension.class)
 public class MateriaDaoTest {
 
     @InjectMocks
-    private MateriaDao materiaDao;
+    private MateriaDaoImp materiaDao;
 
     @Mock
     private EntityManager entityManager;
 
     private Materia materia;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         materia = new Materia();
         materia.setNombre("Hola");
@@ -44,10 +47,17 @@ public class MateriaDaoTest {
         materiaList.add(materia);
         String query = "FROM Materia WHERE anioMateria = :anioMateria";
 
-        when (entityManager.createQuery(query, Materia.class).setParameter("anioMateria", "1").getResultList()).thenReturn(materiaList);
+
+        TypedQuery<Materia> typedQuery = mock(TypedQuery.class);
+        when(entityManager.createQuery(query, Materia.class)).thenReturn(typedQuery);
+        when(typedQuery.setParameter("anioMateria", "1")).thenReturn(typedQuery);
+        when(typedQuery.getResultList()).thenReturn(materiaList);
 
         List<Materia> resultado = materiaDao.getMaterias("1");
 
-        Assert.assertEquals(materiaList,resultado);
+        Assertions.assertEquals(materiaList, resultado);
+        verify(entityManager).createQuery(query, Materia.class);
+        verify(typedQuery).setParameter("anioMateria", "1");
+        verify(typedQuery).getResultList();
     }
 }
