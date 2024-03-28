@@ -1,6 +1,7 @@
 package org.example;
 
 import java.util.List;
+
 public class Alumno {
     private final String legajo;
     private final List<Materia> materiasAprobadas;

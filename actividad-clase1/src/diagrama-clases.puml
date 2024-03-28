@@ -1,0 +1,26 @@
+@startuml
+class Materia{
+    private final String nombre;
+    private final List<Materia> correlativas;
+
+    public List<Materia> getCorrelativas()
+}
+
+class Alumno{
+    private final String legajo;
+    private final List<Materia> materiasAprobadas;
+
+    public boolean cumpleCorrelativas(Materia materia)
+}
+
+
+'class Inscripcion{
+'
+'    private final Alumno alumno;
+'    private final List<Materia> materiasSolicitadas;
+'
+'
+'    public boolean aprobada()
+'}
+
+@enduml

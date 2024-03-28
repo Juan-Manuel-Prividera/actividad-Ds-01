@@ -4,43 +4,24 @@ import org.junit.jupiter.api.Test;
 
 import org.example.*;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 
 public class AlumnoTest {
     Alumno alumno;
-    Materia am2;
-    Materia am1;
-    Materia aga;
-    Materia f1;
-    Materia f2;
-
-    ArrayList<Materia> am2Correlativa = new ArrayList<>();
-
-    ArrayList<Materia> f2Correlativa = new ArrayList<>();
-
-    ArrayList<Materia> materiasAprobadas = new ArrayList<>();
-
+    Materia am2,am1,aga,f1,f2;
 
 
     @BeforeEach
     public void before(){
         // Materias para pruebas
         am1 = new Materia("Analisis Matematico 1", null);
-        am2 = new Materia("Analisis Matematico 2",am2Correlativa );
         aga = new Materia("Algebra", null);
+        am2 = new Materia("Analisis Matematico 2", Arrays.asList(aga,am1));
         f1 = new Materia("Fisica 1", null);
-        f2 = new Materia("Fisica 2",f2Correlativa);
-
-        // Le digo que am2 y f2 tienen correlativas
-        am2Correlativa.add(am1);
-        f2Correlativa.add(f1);
-
-        // Las materias que tiene el alumno aprobadas
-        materiasAprobadas.add(am1);
-        materiasAprobadas.add(aga);
+        f2 = new Materia("Fisica 2",Arrays.asList(f1));
 
 
-        alumno = new Alumno(materiasAprobadas,"123");
+        alumno = new Alumno(Arrays.asList(am1,aga),"123");
     }
 
     @Test
